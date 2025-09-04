@@ -1,84 +1,175 @@
 ---
 sidebar_position: 1
-slug: /
+slug: /intro
 ---
 
-# 欢迎使用 SBIM
+# 草莓创新开发者文档中心
 
-SBIM (Smart Building Information Management) 是一个智能建筑管理系统，为现代建筑提供全面的信息化管理解决方案。
+欢迎来到 **草莓创新 (StrawBerry Innovation)** 开发者文档中心！这是一个基于 Docusaurus 构建的现代化文档网站，为草莓创新无人机自动机场系统提供全面的技术文档和开发指南。
 
-## 🏢 主要功能
+## 📖 关于本项目
 
-### 建筑信息管理
-- 建筑基础信息录入和维护
-- 楼层和房间管理
-- 设备设施信息管理
-- 空间利用率分析
+本文档网站采用现代化的技术栈构建，旨在为开发者、系统集成商和最终用户提供清晰、易用的文档体验。
 
-### 设备监控与控制
-- 实时设备状态监控
-- 远程设备控制
-- 故障预警和报警
-- 维护计划管理
+### 🛠️ 技术特性
 
-### 数据分析与报告
-- 能耗分析和优化建议
-- 使用情况统计报告
-- 成本分析和预算管理
-- 自定义报表生成
+- **基于 Docusaurus 3.8.1** - 现代化的静态网站生成器
+- **TypeScript 支持** - 类型安全的开发体验
+- **响应式设计** - 完美适配桌面端和移动端
+- **智能搜索** - 基于 MiniSearch 的本地搜索功能
+- **多语言支持** - 支持中文和英文
+- **暗色主题** - 自动适配系统主题偏好
+- **移动端优化** - 专门优化的移动端导航体验
 
-### 移动端支持
-- iOS和Android原生应用
-- 响应式Web界面
-- 离线数据同步
-- 推送通知服务
+### 🎨 界面特色
+
+- **现代化 UI 设计** - 简洁美观的用户界面
+- **自定义搜索组件** - 实时搜索，支持中文分词
+- **移动端导航** - 专为移动设备优化的侧边栏
+- **代码高亮** - 支持多种编程语言的语法高亮
+- **交互式组件** - 丰富的交互式文档组件
+
+## 🚁 草莓创新系统介绍
+
+草莓创新专注于无人机自动机场和智能巡检系统，为各行业提供全程无人化的自动巡检解决方案。
+
+### 核心产品系列
+
+#### 🏭 SuperDock Pro V4 自动机场
+
+- **小型化设计**：极限压缩产品尺寸，宽度仅有1米
+- **极速充换电**：100秒极速换电，最多可支持8块电池同时充电
+- **双RTK设计**：支持车载，提供高精度定位
+- **兼容性强**：接口兼容DJI上云API
+- **适配机型**：换电版适配DJI M350，充电版适配DJI M350/M30/M30T
+
+#### 🎯 SuperDock Mini 2 自动机场
+
+- **集成化设计**：闭合尺寸80x65x75cm，重量75kg，一体化设计
+- **自研模块**：配备自研TEC工业空调、集成式气象站、UPS备用电源
+- **智能监控**：搭载集成式视频监控，七彩变色流水提示灯
+- **通讯支持**：支持无人机、自动机场、客户端之间4G通讯
+- **适配机型**：适配御3E/御3T/御3M
+
+#### 🗼 SuperDock Pro 自动机场
+
+- **独立通信塔**：配备可旋转监控摄像头
+- **RTK基站**：自带RTK固定基站，支持网络RTK
+- **广泛适配**：使用RC Plus遥控器可适配M300无人机
+- **兼容性强**：接口兼容DJI上云API
+- **适配机型**：充电版适配M350
+
+#### 🧠 SuperDock CS 控制系统
+
+- **API兼容**：接口兼容DJI上云API，无缝衔接现有系统
+- **无限跳飞**：支持无人机在机场之间无限跳飞
+- **AI智能识别**：自动识别人、车、工程车辆、安全帽等目标物
+- **自动化操作**：根据识别结果自动控制无人机执行任务
+- **部署灵活**：支持云端和私有化部署
 
 ## 🚀 快速开始
 
 ### 新用户指南
-1. [系统安装](./getting-started/installation) - 了解如何安装和配置SBIM系统
-2. [快速入门](./getting-started/quick-start) - 5分钟快速上手指南
-3. [基本概念](./getting-started/basic-concepts) - 理解SBIM的核心概念
+
+1. **[系统安装](./getting-started/installation)** - 了解如何安装和配置SuperDock系统
+2. **[快速入门](./getting-started/quick-start)** - 5分钟快速上手指南
+3. **[基本概念](./getting-started/basic-concepts)** - 理解无人机自动机场的核心概念
 
 ### 开发者资源
-- [API文档](/api/v2/) - 完整的REST API参考
-- [SDK下载](./guides/sdk-guide) - 各语言SDK和示例代码
-- [开发指南](./guides/developer-guide) - 开发最佳实践
 
-## 📚 文档导航
+- **[API文档](/api/v2/)** - 完整的REST API参考，兼容DJI上云API
+- **[SDK下载](./guides/sdk-guide)** - 各语言SDK和示例代码
+- **[开发指南](./guides/developer-guide)** - 系统集成最佳实践
 
-### 用户指南
-- [用户手册](./guides/user-guide) - 详细的用户操作指南
-- [管理员指南](./guides/admin-guide) - 系统管理和配置
-- [故障排除](./tutorials/troubleshooting) - 常见问题解决方案
+## 📚 文档结构
 
-### API参考
-- [认证授权](./api-reference/authentication) - API认证方式
-- [核心API](./api-reference/core-api) - 主要功能API
-- [Webhook](./api-reference/webhooks) - 事件通知机制
-- [错误码](./api-reference/error-codes) - 错误代码说明
+### 📋 用户指南
 
-### 教程和案例
-- [第一个项目](./tutorials/first-project) - 创建您的第一个SBIM项目
-- [最佳实践](./tutorials/best-practices) - 行业最佳实践分享
-- [集成案例](./tutorials/integration-examples) - 第三方系统集成案例
+- **[用户手册](./guides/user-guide)** - 详细的操作指南和使用说明
+- **[管理员指南](./guides/admin-guide)** - 系统管理和配置
+- **[故障排除](./faq/troubleshooting/)** - 常见问题解决方案
+
+### 🔌 API参考
+
+- **[认证授权](./api-reference/authentication)** - API认证方式
+- **[机场控制API](./api-reference/dock-api)** - 自动机场控制接口
+- **[无人机API](./api-reference/drone-api)** - 无人机控制和状态接口
+- **[AI识别API](./api-reference/ai-api)** - AI智能识别接口
+- **[Webhook](./api-reference/webhooks)** - 事件通知机制
+- **[错误码](./api-reference/error-codes)** - 错误代码说明
+
+### 🎓 教程和案例
+
+- **[第一个巡检任务](./tutorials/first-mission)** - 创建您的第一个自动巡检任务
+- **[行业解决方案](./tutorials/industry-solutions)** - 电网、交通、油气等行业案例
+- **[系统集成案例](./tutorials/integration-examples)** - 第三方系统集成案例
+- **[AI模型训练](./tutorials/ai-training)** - 自定义AI识别模型训练
+
+### ❓ 常见问题
+
+- **[入门问题](./faq/getting-started/)** - 新手常见问题
+- **[技术问题](./faq/technical/)** - 技术相关问题
+- **[硬件问题](./faq/hardware/)** - 机场和无人机硬件相关
+- **[故障排除](./faq/troubleshooting/)** - 系统故障处理
+
+## 🔧 本地开发
+
+如果您想要本地运行或贡献到这个文档项目：
+
+### 环境要求
+
+- Node.js 18.0 或更高版本
+- npm 或 yarn 包管理器
+
+### 安装依赖
+
+```bash
+cd sbim-docs-project/website
+npm install
+```
+
+### 启动开发服务器
+
+```bash
+npm run start
+# 或者指定主机和端口
+npm run start -- --host 0.0.0.0 --port 3000
+```
+
+### 构建生产版本
+
+```bash
+npm run build
+```
 
 ## 🔗 相关链接
 
-- [官方网站](https://sbim.com) - 了解更多产品信息
-- [GitHub仓库](https://github.com/sbim/sbim) - 开源代码和问题反馈
-- [社区论坛](https://community.sbim.com) - 用户交流和技术讨论
-- [技术支持](mailto:support@sbim.com) - 获取技术支持
+- **[官方网站](https://sb.im)** - 了解更多产品信息
+- **[GitHub仓库](https://github.com/strawberry-innovation)** - 开源代码和问题反馈
+- **[技术支持](mailto:support@sb.im)** - 获取技术支持
 
-## 💡 需要帮助？
+## 💡 获取帮助
 
 如果您在使用过程中遇到任何问题，可以通过以下方式获取帮助：
 
-- 📖 查看[常见问题](./tutorials/troubleshooting)
-- 💬 访问[社区论坛](https://community.sbim.com)
-- 📧 发送邮件至 [support@sbim.com](mailto:support@sbim.com)
-- 🐛 在[GitHub](https://github.com/sbim/sbim/issues)提交问题
+- 📖 **查看文档** - 浏览相关的文档章节
+- 🔍 **使用搜索** - 利用页面顶部的搜索功能
+- ❓ **常见问题** - 查看 [FAQ 部分](./faq/)
+- 📧 **技术支持** - 发送邮件至 [support@sb.im](mailto:support@sb.im)
+- 🐛 **问题反馈** - 在GitHub提交问题
+
+## 🌟 行业应用
+
+草莓创新的SuperDock系列产品广泛应用于：
+
+- **🔌 电网&电站** - 输电线路、变电站、配网线路精细化巡检
+- **🚗 交通&水务** - 公路、桥梁、河道日常巡检和监管
+- **⛽ 油气&管道** - 石化站点和管道安全监测
+- **🏭 厂区&工地** - 工厂、工地智能化安全巡检
+- **🌲 林业&环保** - 森林防火、环境监测
+- **🛡️ 安防&应急** - 安全防护、应急响应
+- **🏙️ 城市&港口** - 智慧城市、智慧港口建设
 
 ---
 
-**开始您的SBIM之旅吧！** 👉 [快速入门指南](./getting-started/quick-start)
+**开始探索草莓创新无人机自动机场的强大功能吧！** 👉 [快速入门指南](./getting-started/installation)
