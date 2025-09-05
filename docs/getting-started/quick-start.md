@@ -1,4 +1,5 @@
 ---
+id: quick-start
 sidebar_position: 2
 ---
 

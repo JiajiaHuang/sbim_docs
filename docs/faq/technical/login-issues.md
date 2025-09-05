@@ -1,4 +1,5 @@
 ---
+id: login-issues
 title: "客户无法登录系统"
 description: "客户反馈登录时提示用户名或密码错误，但确认信息正确"
 category: "技术支持"

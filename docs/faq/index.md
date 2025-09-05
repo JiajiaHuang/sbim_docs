@@ -1,4 +1,5 @@
 ---
+id: faq
 title: "常见问题解答"
 description: "SBIM系统常见问题和解决方案"
 sidebar_position: 1

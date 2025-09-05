@@ -1,4 +1,5 @@
 ---
+id: installation-guide
 title: "如何安装SBIM系统"
 description: "客户询问SBIM系统的安装步骤和系统要求"
 category: "快速入门"

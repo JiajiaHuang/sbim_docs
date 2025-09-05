@@ -1,4 +1,5 @@
 ---
+id: getting-started
 title: "快速入门问题"
 description: "系统安装、配置和初次使用相关问题"
 sidebar_position: 1

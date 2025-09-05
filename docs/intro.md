@@ -1,4 +1,5 @@
 ---
+id: intro
 sidebar_position: 1
 slug: /intro
 ---
@@ -87,7 +88,7 @@ slug: /intro
 
 ### 开发者资源
 
-- **[API文档](/api/v2/)** - 完整的REST API参考，兼容DJI上云API
+- **[API文档](./api-reference/authentication)** - 完整的REST API参考，兼容DJI上云API
 - **[SDK下载](./guides/sdk-guide)** - 各语言SDK和示例代码
 - **[开发指南](./guides/developer-guide)** - 系统集成最佳实践
 

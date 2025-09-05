@@ -1,4 +1,5 @@
 ---
+id: troubleshooting
 title: "故障排除问题"
 description: "常见错误代码、系统故障和紧急情况处理"
 sidebar_position: 4

@@ -1,3 +1,7 @@
+---
+id: search-optimization
+---
+
 # 搜索体验优化指南
 
 ## 🎯 搜索功能概述

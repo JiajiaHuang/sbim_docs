@@ -1,4 +1,5 @@
 ---
+id: pricing-model
 title: "SBIM系统如何计费"
 description: "客户询问SBIM系统的计费方式和价格结构"
 category: "计费相关"

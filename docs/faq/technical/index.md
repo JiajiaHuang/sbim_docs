@@ -1,4 +1,5 @@
 ---
+id: technical
 title: "技术支持问题"
 description: "登录认证、系统错误和性能优化相关问题"
 sidebar_position: 2

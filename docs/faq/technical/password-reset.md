@@ -1,4 +1,5 @@
 ---
+id: password-reset
 title: "如何重置用户密码"
 description: "客户忘记密码，需要重置登录密码的操作指南"
 category: "技术支持"

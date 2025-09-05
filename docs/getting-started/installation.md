@@ -1,4 +1,5 @@
 ---
+id: installation
 sidebar_position: 1
 ---
 

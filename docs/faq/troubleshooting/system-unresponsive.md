@@ -1,4 +1,5 @@
 ---
+id: system-unresponsive
 title: "系统响应缓慢或无响应"
 description: "客户反馈SBIM系统访问缓慢或完全无法访问"
 category: "故障排除"
