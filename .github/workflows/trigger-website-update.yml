@@ -71,13 +71,10 @@ jobs:
             echo "📝 没有文档内容变化，跳过提交"
           else
             git commit -m "docs: 自动同步文档内容
-
-来源提交: ${{ github.repository }}@${{ github.sha }}
-提交者: ${{ github.actor }}
-同步时间: $(date -u '+%Y-%m-%d %H:%M:%S UTC')
-
-自动从文档仓库同步最新内容到网站仓库"
-            
+            来源提交: ${{ github.repository }}@${{ github.sha }}
+            提交者: ${{ github.actor }}
+            同步时间: $(date -u '+%Y-%m-%d %H:%M:%S UTC')
+            自动从文档仓库同步最新内容到网站仓库"
             git push origin main
             echo "✅ 文档内容已同步到网站仓库"
           fi
