@@ -1,4 +1,4 @@
-name: 触发网站更新
+name: 同步文档并触发网站更新
 
 on:
   push:
@@ -8,26 +8,65 @@ on:
   workflow_dispatch:
 
 jobs:
-  trigger-website-update:
+  sync-docs-and-trigger-update:
     runs-on: ubuntu-latest
     steps:
-      - name: 触发网站仓库重新部署
-        uses: peter-evans/repository-dispatch@v3
+      - name: 检出文档仓库
+        uses: actions/checkout@v4
         with:
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          repository: JiajiaHuang/sbim_web
-          event-type: docs-updated
-          client-payload: |
-            {
-              "ref": "${{ github.ref }}",
-              "sha": "${{ github.sha }}",
-              "repository": "${{ github.repository }}",
-              "pusher": "${{ github.actor }}"
-            }
+          path: sbim_docs
 
-      - name: 记录触发信息
+      - name: 检出网站仓库
+        uses: actions/checkout@v4
+        with:
+          repository: JiajiaHuang/sbim_web
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          path: sbim_web
+
+      - name: 同步文档内容到网站仓库
         run: |
-          echo "✅ 已触发网站仓库 (JiajiaHuang/sbim_web) 重新部署"
+          echo "🔄 开始同步文档内容..."
+          
+          # 清空网站仓库的 docs 目录
+          rm -rf sbim_web/docs/*
+          
+          # 复制文档仓库的内容到网站仓库
+          cp -r sbim_docs/docs/* sbim_web/docs/
+          cp -r sbim_docs/api/* sbim_web/docs/api/ 2>/dev/null || echo "没有 api 目录，跳过"
+          
+          echo "📁 同步的文件列表:"
+          ls -la sbim_web/docs/
+
+      - name: 配置 Git 用户信息
+        run: |
+          cd sbim_web
+          git config user.name "Jiaheng"
+          git config user.email "569249477@qq.com"
+
+      - name: 提交文档更新到网站仓库
+        run: |
+          cd sbim_web
+          git add docs/
+          
+          if git diff --staged --quiet; then
+            echo "📝 没有文档内容变化，跳过提交"
+          else
+            git commit -m "docs: 自动同步文档内容
+
+来源提交: ${{ github.repository }}@${{ github.sha }}
+提交者: ${{ github.actor }}
+同步时间: $(date -u '+%Y-%m-%d %H:%M:%S UTC')
+
+自动从文档仓库同步最新内容到网站仓库"
+            
+            git push origin main
+            echo "✅ 文档内容已同步到网站仓库"
+          fi
+
+      - name: 记录同步信息
+        run: |
+          echo "✅ 文档同步完成"
           echo "📝 文档仓库提交: ${{ github.sha }}"
           echo "👤 提交者: ${{ github.actor }}"
           echo "🌿 分支: ${{ github.ref }}"
+          echo "�� 网站将自动重新部署"
