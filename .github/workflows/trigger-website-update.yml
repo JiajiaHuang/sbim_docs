@@ -27,14 +27,33 @@ jobs:
         run: |
           echo "🔄 开始同步文档内容..."
           
+          # 检查文档仓库结构
+          echo "📂 文档仓库结构:"
+          ls -la sbim_docs/
+          
+          # 确保网站仓库的 docs 目录存在
+          mkdir -p sbim_web/docs
+          
           # 清空网站仓库的 docs 目录
           rm -rf sbim_web/docs/*
           
           # 复制文档仓库的内容到网站仓库
-          cp -r sbim_docs/docs/* sbim_web/docs/
-          cp -r sbim_docs/api/* sbim_web/docs/api/ 2>/dev/null || echo "没有 api 目录，跳过"
+          if [ -d "sbim_docs/docs" ]; then
+            cp -r sbim_docs/docs/* sbim_web/docs/
+            echo "✅ 已复制 docs 目录"
+          else
+            echo "⚠️ 文档仓库中没有 docs 目录"
+          fi
           
-          echo "📁 同步的文件列表:"
+          if [ -d "sbim_docs/api" ]; then
+            mkdir -p sbim_web/docs/api
+            cp -r sbim_docs/api/* sbim_web/docs/api/
+            echo "✅ 已复制 api 目录"
+          else
+            echo "⚠️ 文档仓库中没有 api 目录"
+          fi
+          
+          echo "📁 同步后的文件列表:"
           ls -la sbim_web/docs/
 
       - name: 配置 Git 用户信息
@@ -69,4 +88,4 @@ jobs:
           echo "📝 文档仓库提交: ${{ github.sha }}"
           echo "👤 提交者: ${{ github.actor }}"
           echo "🌿 分支: ${{ github.ref }}"
-          echo "�� 网站将自动重新部署"
+          echo "🌐 网站将自动重新部署"
