@@ -62,8 +62,8 @@ jobs:
           
           cd sbim_web
           
-          # 创建简化的 sidebars.ts 生成脚本
-          cat > generate_sidebars.js << 'EOF'
+          # 创建 Node.js 脚本来生成 sidebars.ts
+          cat > generate_sidebars.js << 'SCRIPT_EOF'
           const fs = require('fs');
           const path = require('path');
           
@@ -78,10 +78,10 @@ jobs:
             entries.forEach(entry => {
               if (entry.isFile() && entry.name.endsWith('.md')) {
                 const fileName = entry.name.replace('.md', '');
-                const docId = basePath ? `${basePath}/${fileName}` : fileName;
+                const docId = basePath ? basePath + '/' + fileName : fileName;
                 files.push(docId);
               } else if (entry.isDirectory()) {
-                const subPath = basePath ? `${basePath}/${entry.name}` : entry.name;
+                const subPath = basePath ? basePath + '/' + entry.name : entry.name;
                 files.push(...getAllMdFiles(path.join(dir, entry.name), subPath));
               }
             });
@@ -92,24 +92,21 @@ jobs:
           // 获取所有文档文件
           const allDocs = getAllMdFiles('');
           
-          // 生成简单的 sidebars.ts
-          const sidebarItems = allDocs.map(doc => `    '${doc}'`).join(',\n');
+          // 生成 sidebars.ts 内容
+          const sidebarItems = allDocs.map(doc => "    '" + doc + "'").join(',\n');
           
-          const sidebarContent = `import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
-
-const sidebars: SidebarsConfig = {
-  tutorialSidebar: [
-${sidebarItems}
-  ],
-};
-
-export default sidebars;
-`;
+          const sidebarContent = "import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';\n\n" +
+            "const sidebars: SidebarsConfig = {\n" +
+            "  tutorialSidebar: [\n" +
+            sidebarItems + "\n" +
+            "  ],\n" +
+            "};\n\n" +
+            "export default sidebars;\n";
           
           fs.writeFileSync('sidebars.ts', sidebarContent);
           console.log('✅ sidebars.ts 已生成，包含', allDocs.length, '个文档');
           console.log('文档列表:', allDocs.join(', '));
-          EOF
+          SCRIPT_EOF
           
           # 运行脚本生成 sidebars.ts
           node generate_sidebars.js
@@ -136,14 +133,14 @@ export default sidebars;
           else
             git commit -m "docs: 自动同步文档内容并更新侧边栏配置
 
-来源提交: ${{ github.repository }}@${{ github.sha }}
-提交者: ${{ github.actor }}
-同步时间: $(date -u '+%Y-%m-%d %H:%M:%S UTC')
+          来源提交: ${{ github.repository }}@${{ github.sha }}
+          提交者: ${{ github.actor }}
+          同步时间: $(date -u '+%Y-%m-%d %H:%M:%S UTC')
 
-更新内容:
-- 自动从文档仓库同步最新内容到网站仓库
-- 根据实际文档结构自动生成 sidebars.ts 配置
-- 确保侧边栏与文档内容完全匹配"
+          更新内容:
+          - 自动从文档仓库同步最新内容到网站仓库
+          - 根据实际文档结构自动生成 sidebars.ts 配置
+          - 确保侧边栏与文档内容完全匹配"
             
             git push origin main
             echo "✅ 文档内容和配置已同步到网站仓库"
