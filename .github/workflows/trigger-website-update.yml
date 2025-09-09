@@ -54,7 +54,71 @@ jobs:
           fi
           
           echo "📁 同步后的文件列表:"
-          ls -la sbim_web/docs/
+          find sbim_web/docs -name "*.md" | head -10
+
+      - name: 自动生成 sidebars.ts 配置
+        run: |
+          echo "🔧 开始生成 sidebars.ts 配置..."
+          
+          cd sbim_web
+          
+          # 创建简化的 sidebars.ts 生成脚本
+          cat > generate_sidebars.js << 'EOF'
+          const fs = require('fs');
+          const path = require('path');
+          
+          function getAllMdFiles(dir, basePath = '') {
+            const files = [];
+            const fullPath = path.join('docs', dir);
+            
+            if (!fs.existsSync(fullPath)) return files;
+            
+            const entries = fs.readdirSync(fullPath, { withFileTypes: true });
+            
+            entries.forEach(entry => {
+              if (entry.isFile() && entry.name.endsWith('.md')) {
+                const fileName = entry.name.replace('.md', '');
+                const docId = basePath ? `${basePath}/${fileName}` : fileName;
+                files.push(docId);
+              } else if (entry.isDirectory()) {
+                const subPath = basePath ? `${basePath}/${entry.name}` : entry.name;
+                files.push(...getAllMdFiles(path.join(dir, entry.name), subPath));
+              }
+            });
+            
+            return files;
+          }
+          
+          // 获取所有文档文件
+          const allDocs = getAllMdFiles('');
+          
+          // 生成简单的 sidebars.ts
+          const sidebarItems = allDocs.map(doc => `    '${doc}'`).join(',\n');
+          
+          const sidebarContent = `import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
+
+const sidebars: SidebarsConfig = {
+  tutorialSidebar: [
+${sidebarItems}
+  ],
+};
+
+export default sidebars;
+`;
+          
+          fs.writeFileSync('sidebars.ts', sidebarContent);
+          console.log('✅ sidebars.ts 已生成，包含', allDocs.length, '个文档');
+          console.log('文档列表:', allDocs.join(', '));
+          EOF
+          
+          # 运行脚本生成 sidebars.ts
+          node generate_sidebars.js
+          
+          # 清理临时文件
+          rm generate_sidebars.js
+          
+          echo "📄 生成的 sidebars.ts 内容:"
+          cat sidebars.ts
 
       - name: 配置 Git 用户信息
         run: |
@@ -65,18 +129,24 @@ jobs:
       - name: 提交文档更新到网站仓库
         run: |
           cd sbim_web
-          git add docs/
+          git add docs/ sidebars.ts
           
           if git diff --staged --quiet; then
             echo "📝 没有文档内容变化，跳过提交"
           else
-            git commit -m "docs: 自动同步文档内容
-            来源提交: ${{ github.repository }}@${{ github.sha }}
-            提交者: ${{ github.actor }}
-            同步时间: $(date -u '+%Y-%m-%d %H:%M:%S UTC')
-            自动从文档仓库同步最新内容到网站仓库"
+            git commit -m "docs: 自动同步文档内容并更新侧边栏配置
+
+来源提交: ${{ github.repository }}@${{ github.sha }}
+提交者: ${{ github.actor }}
+同步时间: $(date -u '+%Y-%m-%d %H:%M:%S UTC')
+
+更新内容:
+- 自动从文档仓库同步最新内容到网站仓库
+- 根据实际文档结构自动生成 sidebars.ts 配置
+- 确保侧边栏与文档内容完全匹配"
+            
             git push origin main
-            echo "✅ 文档内容已同步到网站仓库"
+            echo "✅ 文档内容和配置已同步到网站仓库"
           fi
 
       - name: 记录同步信息
