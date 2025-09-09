@@ -1,3 +1,9 @@
+---
+id: test-sync
+title: 测试文档同步
+sidebar_position: 998
+---
+
 # 测试文档同步
 
 这是一个测试文档，用于验证修复后的自动化流程。
@@ -8,5 +14,9 @@
 - 自动同步到网站仓库
 - 网站自动重新部署
 
-测试时间: Tuesday, September 09, 2025 PM06:56:59 HKT
-提交哈希: 将在 GitHub Actions 中显示
+## 状态
+
+✅ 文档已同步到网站仓库  
+🔄 正在修复 Docusaurus 构建问题  
+
+测试时间: $(date)
